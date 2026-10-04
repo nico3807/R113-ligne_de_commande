@@ -1608,3 +1608,91 @@ details.callout summary {
 details.callout[open] summary {
   margin-bottom: 0.5rem;
 }
+
+/* ---------- Livrable : identite et captures ---------- */
+
+.identite .reponse {
+  margin: 0;
+}
+.reponse input[type='text'] {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+}
+.capture {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.capture h3 {
+  margin: 0;
+}
+.capture .rappel {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.capture.ok {
+  border-color: color-mix(in srgb, var(--ok) 45%, var(--border));
+}
+.depot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: center;
+  padding: 0.6rem;
+  overflow: hidden;
+}
+.depot:hover,
+.depot.survol,
+.depot:focus-within {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+}
+.depot input[type='file'] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.depot-apercu {
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 6px;
+}
+.depot-apercu:not([hidden]) + .depot-texte,
+.depot.rempli .depot-texte {
+  display: none;
+}
+.capture-pied {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+}
+.capture-etat {
+  flex: 1;
+  color: var(--text-muted);
+}
+.capture.ok .capture-etat {
+  color: var(--ok);
+  font-weight: 600;
+}
+.capture.erreur .capture-etat {
+  color: var(--danger);
+  font-weight: 600;
+}

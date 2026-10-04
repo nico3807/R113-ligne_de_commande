@@ -41,8 +41,12 @@ lien cliquable à distribuer.
   (renommer 100 fichiers).
 - **Ligne `ls -l` décodée** et **calculateur de permissions** (cases ↔ octal
   ↔ chaîne `rwx`).
-- **Livrable** : liste de contrôle des captures, rédaction de Q1 à Q9,
-  copie ou téléchargement des réponses en `.txt` pour Moodle.
+- **Livrable** : prénom et nom, dépôt des deux captures d'écran (JPG
+  uniquement, vérifié à la lecture du fichier), rédaction de Q1 à Q9, puis
+  **compte rendu PDF** à déposer sur Moodle, avec la même mise en page que le
+  certificat des exercices de `bases_de_js` (logos, identité, statistiques,
+  avancement, réponses, captures). Le PDF est verrouillé (impression seule)
+  et porte la mention « INCOMPLET » s'il manque une réponse ou une capture.
 - **Mémo** : fiche récapitulative filtrable, boutons « copier », quiz
   « quelle commande ? ».
 
@@ -54,7 +58,7 @@ R113-ligne_de_commande/
 ├── prerequis.html     2. Prérequis : fiche MobaXterm (Windows) ou Terminal (macOS)
 ├── decouverte.html    3. Découverte de l'environnement (Q1 à Q4)
 ├── manipulation.html  4. Manipulation des fichiers et dossiers (Q5 à Q9)
-├── livrable.html      5. Livrable : captures et réponses
+├── livrable.html      5. Livrable : identité, captures JPG, réponses, PDF
 ├── memo.html          Fiche récapitulative des commandes
 ├── css/style.css      Feuille de style partagée (thème clair / sombre)
 ├── img/               Logos IUT et MMI, logos Windows / macOS, captures MobaXterm
@@ -63,8 +67,11 @@ R113-ligne_de_commande/
     ├── terminal.js      Terminal Bash simulé et missions
     ├── decouverte.js    Missions, arborescence, tri, course
     ├── manipulation.js  Missions, calculateur chmod, ligne ls -l
-    ├── livrable.js      Réponses Q1 à Q9, copie et téléchargement
-    └── memo.js          Filtre, copie, quiz
+    ├── livrable.js      Identité, captures, réponses Q1 à Q9
+    ├── compte-rendu.js  Génération du compte rendu PDF (jsPDF)
+    ├── certificat-logos.js  Logos du PDF en base64 (comme bases_de_js)
+    ├── memo.js          Filtre, copie, quiz
+    └── vendor/          jsPDF (licence MIT, jspdf.LICENSE.txt)
 ```
 
 ## Licence
