@@ -1710,3 +1710,9 @@ details.callout[open] summary {
   border: 1px solid color-mix(in srgb, var(--warn) 35%, var(--border));
   font-size: 0.92rem;
 }
+
+/* Reponses non selectionnables (voir js/livrable.js) : meme si une
+   selection apparait un instant, elle reste invisible. */
+.reponse textarea::selection {
+  background: transparent;
+}

@@ -214,35 +214,31 @@
     afficher();
   });
 
-  // ---------- Copie des réponses ----------
-
-  function texte() {
-    var lignes = ['R1.13 Hébergement - TP1 Exploration du Système d\'Exploitation et de la Ligne de Commande'];
-    var qui = (prenom.value.trim() + ' ' + nom.value.trim()).trim();
-    if (qui) lignes.push('Étudiant·e : ' + qui);
-    lignes.push('');
-    zones.forEach(function (z) {
-      lignes.push(z.closest('.reponse').querySelector('label').textContent.trim());
-      lignes.push(z.value.trim() || '(pas de réponse)');
-      lignes.push('');
-    });
-    return lignes.join('\n');
-  }
+  // ---------- Messages ----------
 
   function message(txt, ok) {
     info.textContent = txt;
     info.className = 'feedback ' + (ok ? 'ok' : 'ko');
   }
 
-  document.getElementById('reponses-copier').addEventListener('click', function () {
-    if (!navigator.clipboard || !navigator.clipboard.writeText) {
-      message('Copie impossible dans ce navigateur.', false);
-      return;
-    }
-    navigator.clipboard.writeText(texte()).then(function () {
-      message('✔ Réponses copiées dans le presse-papiers.', true);
-    }, function () {
-      message('Copie impossible dans ce navigateur.', false);
+  // ---------- Réponses : ni sélection, ni copie ----------
+  // Les réponses s'écrivent normalement, mais ne peuvent pas être
+  // sélectionnées ni copiées (clavier, clic droit ou glisser-déposer) : on
+  // ne récupère pas le travail d'un·e camarade resté ouvert sur un poste.
+  zones.forEach(function (z) {
+    ['copy', 'cut', 'dragstart', 'contextmenu'].forEach(function (type) {
+      z.addEventListener(type, function (evt) {
+        evt.preventDefault();
+        message('\u26D4 La copie des réponses est désactivée sur cette page.', false);
+      });
+    });
+    // Toute sélection est aussitôt réduite au curseur (souris, Maj + flèches,
+    // Ctrl + A...). La saisie et l'effacement restent possibles.
+    z.addEventListener('select', function () {
+      if (z.selectionStart !== z.selectionEnd) {
+        var fin = z.selectionDirection === 'backward' ? z.selectionStart : z.selectionEnd;
+        z.setSelectionRange(fin, fin);
+      }
     });
   });
 
