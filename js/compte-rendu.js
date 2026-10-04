@@ -52,7 +52,7 @@ var CompteRendu = (function () {
         userPermissions: ['print']
       }
     });
-    var W = 210, H = 297, MARGE = 14, BAS = H - 18;
+    var W = 210, H = 297, MARGE = 14, BAS = H - 23;
     var prenom = nettoyer(opts.prenom);
     var nom = nettoyer(opts.nom).toUpperCase();
     var nbReponses = opts.questions.filter(function (q) { return q.reponse.trim(); }).length;
@@ -308,15 +308,17 @@ var CompteRendu = (function () {
     });
 
     /* ---------- Pieds de page ---------- */
+    // Deux lignes au-dessus du cadre intérieur (tracé à H - 9,5) : écrites
+    // plus bas, elles reposaient sur le trait.
     var pages = doc.getNumberOfPages();
     for (var p = 1; p <= pages; p++) {
       doc.setPage(p);
       doc.setFont('helvetica', 'italic');
       doc.setFontSize(8);
       doc.setTextColor(140, 140, 160);
-      doc.text(nettoyer(RESSOURCE + ' — ' + TITRE_TP + ' — ' + prenom + ' ' + nom), MARGE, H - 9);
-      doc.text('page ' + p + ' / ' + pages, W - MARGE, H - 9, { align: 'right' });
-      doc.text('Document protégé : modification interdite', W / 2, H - 12.5, { align: 'center' });
+      doc.text(nettoyer(RESSOURCE + ' — ' + TITRE_TP + ' — ' + prenom + ' ' + nom), MARGE, H - 13);
+      doc.text('page ' + p + ' / ' + pages, W - MARGE, H - 13, { align: 'right' });
+      doc.text('Document protégé : modification interdite', W / 2, H - 17, { align: 'center' });
     }
 
     doc.save('compte_rendu_TP1_' + slug(opts.nom) + '_' + slug(opts.prenom) + (complet ? '' : '_incomplet') + '.pdf');
