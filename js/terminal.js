@@ -368,6 +368,13 @@ var Terminal = (function () {
         var dest = args[args.length - 1];
         var destAbs = absolu(dest);
         var destN = noeud(destAbs);
+        // Avec plusieurs sources, la destination doit être un dossier
+        // existant : sinon Bash refuse tout, sans rien déplacer.
+        if (args.length > 2 && !(destN && destN.t === 'd')) {
+          err("mv: target '" + dest + "' is not a directory");
+          aide('Avec plus de deux arguments, mv déplace tous les premiers DANS le dernier, qui doit être un dossier. Pour renommer : mv ancien_nom nouveau_nom (deux arguments seulement).');
+          return false;
+        }
         var ok = true;
         args.slice(0, -1).forEach(function (src) {
           var srcAbs = absolu(src);
@@ -383,6 +390,11 @@ var Terminal = (function () {
             cibleAbs = destAbs + '/' + decouper(srcAbs).pop();
           } else {
             cibleAbs = destAbs;
+          }
+          if (cibleAbs === srcAbs) {
+            err("mv: '" + src + "' and '" + dest + "' are the same file");
+            ok = false;
+            return;
           }
           if ((cibleAbs + '/').indexOf(srcAbs + '/') === 0) {
             err("mv: cannot move '" + src + "' to a subdirectory of itself");
@@ -562,6 +574,10 @@ var Terminal = (function () {
         return false;
       }
       var ok = f(args, opts);
+      // « mv a mv a b » : le nom de la commande recopié dans ses arguments.
+      if (cmd !== 'echo' && cmd !== 'help' && args.indexOf(cmd) !== -1) {
+        aide('Le mot « ' + cmd + ' » apparaît aussi dans les arguments : tu l\'as peut-être tapé deux fois. Le nom de la commande ne s\'écrit qu\'une fois, au début.');
+      }
       verifierMissions({ cmd: cmd, args: args, opts: opts, ok: ok });
       return ok;
     }
