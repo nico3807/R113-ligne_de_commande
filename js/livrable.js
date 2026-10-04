@@ -49,14 +49,44 @@
 
   // ---------- Identité et réponses ----------
 
+  // Dès le premier PDF généré, l'identité est figée sur ce poste : on ne
+  // peut plus changer de nom pour générer le compte rendu d'un·e camarade.
+  // Le PDF utilise toujours l'identité verrouillée, même si les champs
+  // sont réactivés avec les outils de développement du navigateur.
+  var verrou = TP.lire('identite-verrou', null);
+
+  function appliquerVerrou() {
+    var note = document.getElementById('identite-verrou');
+    if (!verrou) {
+      if (note) note.hidden = true;
+      return;
+    }
+    [prenom, nom].forEach(function (champ) {
+      champ.value = verrou[champ.id];
+      champ.readOnly = true;
+      champ.setAttribute('aria-readonly', 'true');
+      champ.title = 'Identité verrouillée depuis la génération du premier PDF';
+    });
+    if (note) {
+      note.hidden = false;
+      note.textContent = '\uD83D\uDD12 Identité verrouillée depuis la génération du premier PDF, le ' + verrou.date +
+        '. Elle ne peut plus être modifiée. En cas d\'erreur, adresse-toi à ton enseignant·e.';
+    }
+  }
+
   prenom.value = TP.lire('prenom', '');
   nom.value = TP.lire('nom', '');
   [prenom, nom].forEach(function (champ) {
     champ.addEventListener('input', function () {
+      if (verrou) {
+        champ.value = verrou[champ.id];
+        return;
+      }
       TP.ecrire(champ.id, champ.value);
       maj();
     });
   });
+  appliquerVerrou();
 
   zones.forEach(function (z) {
     z.value = reponses[z.id] || '';
@@ -244,10 +274,18 @@
       return;
     }
     var maintenant = new Date();
+    var quand = maintenant.toLocaleDateString('fr-FR') + ' à ' + maintenant.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    var identite = verrou || { prenom: prenom.value.trim(), nom: nom.value.trim() };
+    if (!verrou && !window.confirm(
+      'Ton identité va être verrouillée sur ce poste :\n\n    ' + identite.prenom + ' ' + identite.nom.toUpperCase() +
+      '\n\nElle ne pourra plus être modifiée après la génération du PDF. Vérifie l\'orthographe. Continuer ?')) {
+      message('Génération annulée : vérifie ton prénom et ton nom.', false);
+      return;
+    }
     var opts = {
-      prenom: prenom.value,
-      nom: nom.value,
-      date: maintenant.toLocaleDateString('fr-FR') + ' à ' + maintenant.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+      prenom: identite.prenom,
+      nom: identite.nom,
+      date: quand,
       questions: Array.prototype.map.call(zones, function (z) {
         var bloc = z.closest('.reponse');
         return {
@@ -268,6 +306,13 @@
     bouton.textContent = 'Génération en cours…';
     try {
       var res = CompteRendu.generer(opts);
+      if (!verrou) {
+        verrou = { prenom: identite.prenom, nom: identite.nom, date: quand };
+        TP.ecrire('identite-verrou', verrou);
+        TP.ecrire('prenom', verrou.prenom);
+        TP.ecrire('nom', verrou.nom);
+      }
+      appliquerVerrou();
       message(res.complet
         ? '✔ PDF généré (' + res.pages + ' pages) : dépose-le sur Moodle.'
         : '⚠ PDF généré (' + res.pages + ' pages) mais INCOMPLET : complète les éléments non cochés en haut de la page, puis régénère-le.',

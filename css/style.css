@@ -1696,3 +1696,17 @@ details.callout[open] summary {
   color: var(--danger);
   font-weight: 600;
 }
+
+.reponse input[readonly] {
+  background: var(--code-bg);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.identite-verrou {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  border: 1px solid color-mix(in srgb, var(--warn) 35%, var(--border));
+  font-size: 0.92rem;
+}

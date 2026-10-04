@@ -52,6 +52,11 @@
       </ol>
 
       <h2>1. Mon identité</h2>
+      <p>
+        Vérifie bien l'orthographe : ton prénom et ton nom seront
+        <strong>verrouillés</strong> dès la génération du premier PDF et ne
+        pourront plus être modifiés sur ce poste.
+      </p>
       <div class="grid cols-2 identite">
         <div class="reponse">
           <label for="prenom">Prénom</label>
@@ -62,6 +67,7 @@
           <input id="nom" type="text" autocomplete="family-name" />
         </div>
       </div>
+      <p class="identite-verrou" id="identite-verrou" hidden></p>
 
       <h2>2. Mes captures d'écran</h2>
       <p>
