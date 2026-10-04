@@ -221,16 +221,36 @@
     info.className = 'feedback ' + (ok ? 'ok' : 'ko');
   }
 
-  // ---------- Réponses : ni sélection, ni copie ----------
-  // Les réponses s'écrivent normalement, mais ne peuvent pas être
-  // sélectionnées ni copiées (clavier, clic droit ou glisser-déposer) : on
-  // ne récupère pas le travail d'un·e camarade resté ouvert sur un poste.
+  // ---------- Réponses : ni sélection, ni copie, ni collage ----------
+  // Les réponses s'écrivent normalement au clavier, mais ne peuvent être
+  // ni sélectionnées ni copiées (on ne récupère pas le travail d'un·e
+  // camarade resté ouvert sur un poste), ni collées depuis un autre texte
+  // (camarade, site web, IA...) : clavier, clic droit ou glisser-déposer.
   zones.forEach(function (z) {
     ['copy', 'cut', 'dragstart', 'contextmenu'].forEach(function (type) {
       z.addEventListener(type, function (evt) {
         evt.preventDefault();
         message('\u26D4 La copie des réponses est désactivée sur cette page.', false);
       });
+    });
+    function refuserCollage(evt) {
+      evt.preventDefault();
+      message('\u26D4 Le collage est désactivé : rédige tes réponses toi-même.', false);
+    }
+    ['paste', 'drop'].forEach(function (type) {
+      z.addEventListener(type, refuserCollage);
+    });
+    z.addEventListener('dragover', function (evt) {
+      evt.preventDefault();
+      evt.dataTransfer.dropEffect = 'none';
+    });
+    // Filet de sécurité pour les autres voies d'insertion (menu Édition du
+    // navigateur, saisie vocale du presse-papiers...).
+    z.addEventListener('beforeinput', function (evt) {
+      if (/^insertFrom(Paste|Drop|PasteAsQuotation|YankRemove)/.test(evt.inputType || '') ||
+          evt.inputType === 'insertReplacementText' && evt.dataTransfer) {
+        refuserCollage(evt);
+      }
     });
     // Toute sélection est aussitôt réduite au curseur (souris, Maj + flèches,
     // Ctrl + A...). La saisie et l'effacement restent possibles.
