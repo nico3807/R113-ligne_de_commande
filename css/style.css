@@ -1716,3 +1716,30 @@ details.callout[open] summary {
 .reponse textarea::selection {
   background: transparent;
 }
+
+/* ---------- Bareme du livrable ---------- */
+
+.bareme td.pts,
+.bareme th.pts {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 700;
+}
+.bareme tfoot td {
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+}
+/* Points affiches a cote de l'intitule par le CSS seul : ils ne font pas
+   partie du texte repris comme titre de la question dans le PDF. */
+.reponse label[data-pts]::after,
+.capture h3[data-pts]::after {
+  content: attr(data-pts);
+  margin-left: 0.6rem;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-b-bg);
+  color: var(--accent-b);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}

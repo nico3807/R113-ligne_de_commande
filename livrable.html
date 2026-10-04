@@ -51,6 +51,28 @@
         <li data-etat="reponses"><span><strong>Réponses aux 9 questions</strong> (Q1 à Q9) rédigées : <span id="reponses-compteur"></span>.</span></li>
       </ol>
 
+      <h2>Barème</h2>
+      <p>
+        Le compte rendu est noté sur <strong>20 points</strong>. Les points de
+        chaque question et de chaque capture sont rappelés ci-dessous, à côté
+        de leur intitulé.
+      </p>
+      <div class="table-scroll">
+        <table class="bareme">
+          <thead><tr><th>Partie</th><th>Détail</th><th class="pts">Points</th></tr></thead>
+          <tbody>
+            <tr><td>Partie 3 : découverte de l'environnement</td><td>Q1 (1,5) · Q2 (2) · Q3 (1,5) · Q4 (1,5)</td><td class="pts">6,5 pts</td></tr>
+            <tr><td>Partie 4 : manipulation des fichiers et dossiers</td><td>Q5 (1) · Q6 (1,5) · Q7 (1) · Q8 (2) · Q9 (2,5)</td><td class="pts">8 pts</td></tr>
+            <tr><td>Captures d'écran</td><td>Capture 1 : arborescence (2,5) · Capture 2 : permissions (3)</td><td class="pts">5,5 pts</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="2">Total</td><td class="pts">20 pts</td></tr></tfoot>
+        </table>
+      </div>
+      <p class="hint" style="color: var(--text-muted); font-size: 0.9rem">
+        Un élément manquant (réponse vide ou capture absente) ne rapporte aucun
+        point. Les activités d'entraînement du site ne sont pas notées.
+      </p>
+
       <h2>1. Mon identité</h2>
       <p>
         Vérifie bien l'orthographe : ton prénom et ton nom seront
@@ -98,7 +120,7 @@
       </details>
       <div class="grid cols-2">
         <div class="capture" data-capture="capture1">
-          <h3>Capture 1 · Arborescence</h3>
+          <h3 data-pts="2,5 pts">Capture 1 · Arborescence</h3>
           <p class="rappel">Votre Terminal/MobaXterm montrant les commandes utilisées pour créer les dossiers <code>BUT_MMI</code> et <code>TP_Hebergement</code>, ainsi que la commande listant le contenu final du dossier <code>Ressources</code>.</p>
           <label class="depot">
             <input type="file" accept=".jpg,.jpeg,image/jpeg" />
@@ -111,7 +133,7 @@
           </div>
         </div>
         <div class="capture" data-capture="capture2">
-          <h3>Capture 2 · Permissions</h3>
+          <h3 data-pts="3 pts">Capture 2 · Permissions</h3>
           <p class="rappel">La commande <code>ls -l</code> exécutée sur le dossier <code>TP_Hebergement</code>, montrant clairement le fichier <code>index.html</code> avec les permissions modifiées (<code>r--r--r--</code>).</p>
           <label class="depot">
             <input type="file" accept=".jpg,.jpeg,image/jpeg" />
@@ -137,47 +159,47 @@
         <span class="progress-text" id="reponses-progression"></span>
       </div>
         <div class="reponse" id="bloc-q1" data-partie="0">
-          <label for="q1">Q1. Répertoire personnel et racine</label>
+          <label for="q1" data-pts="1,5 pts">Q1. Répertoire personnel et racine</label>
           <p class="rappel">Chemin complet de votre répertoire personnel (pwd) ? Caractère qui représente la racine ? <a href="decouverte.html">Voir dans le TP</a></p>
           <textarea id="q1" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q2" data-partie="0">
-          <label for="q2">Q2. Chemin absolu ou relatif</label>
+          <label for="q2" data-pts="2 pts">Q2. Chemin absolu ou relatif</label>
           <p class="rappel">Pourquoi /home/etudiant/projet.txt est absolu et images/photo.jpg relatif ? <a href="decouverte.html">Voir dans le TP</a></p>
           <textarea id="q2" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q3" data-partie="0">
-          <label for="q3">Q3. Interface graphique ou ligne de commande</label>
+          <label for="q3" data-pts="1,5 pts">Q3. Interface graphique ou ligne de commande</label>
           <p class="rappel">Différence de vitesse entre Explorateur/Finder et Terminal pour une tâche complexe (renommer 100 fichiers). <a href="decouverte.html">Voir dans le TP</a></p>
           <textarea id="q3" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q4" data-partie="0">
-          <label for="q4">Q4. L'option -a de ls</label>
+          <label for="q4" data-pts="1,5 pts">Q4. L'option -a de ls</label>
           <p class="rappel">Que signifie l'option -a ? Quel type de fichiers apparaît en plus ? <a href="decouverte.html">Voir dans le TP</a></p>
           <textarea id="q4" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q5" data-partie="1">
-          <label for="q5">Q5. Créer des fichiers vides</label>
+          <label for="q5" data-pts="1 pt">Q5. Créer des fichiers vides</label>
           <p class="rappel">Commande utilisée pour créer les trois fichiers vides (la commande et le mot-clé qui la précède). <a href="manipulation.html">Voir dans le TP</a></p>
           <textarea id="q5" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q6" data-partie="1">
-          <label for="q6">Q6. Renommer un fichier</label>
+          <label for="q6" data-pts="1,5 pts">Q6. Renommer un fichier</label>
           <p class="rappel">Commande (et arguments) utilisée pour renommer config.json en parametres.json. <a href="manipulation.html">Voir dans le TP</a></p>
           <textarea id="q6" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q7" data-partie="1">
-          <label for="q7">Q7. Contenu de Ressources</label>
+          <label for="q7" data-pts="1 pt">Q7. Contenu de Ressources</label>
           <p class="rappel">Que voyez-vous en exécutant ls dans le dossier Ressources ? <a href="manipulation.html">Voir dans le TP</a></p>
           <textarea id="q7" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q8" data-partie="1">
-          <label for="q8">Q8. Les sections de permissions</label>
+          <label for="q8" data-pts="2 pts">Q8. Les sections de permissions</label>
           <p class="rappel">Les trois sections Propriétaire / Groupe / Autres sur la ligne de index.html, et la signification de la lettre w. <a href="manipulation.html">Voir dans le TP</a></p>
           <textarea id="q8" rows="3"></textarea>
         </div>
         <div class="reponse" id="bloc-q9" data-partie="1">
-          <label for="q9">Q9. chmod 444 et chmod 700</label>
+          <label for="q9" data-pts="2,5 pts">Q9. chmod 444 et chmod 700</label>
           <p class="rappel">Comment la chaîne de permissions de index.html a-t-elle changé ? Permissions accordées par chmod 700 (Propriétaire / Groupe / Autres, en Lecture, Écriture, Exécution). <a href="manipulation.html">Voir dans le TP</a></p>
           <textarea id="q9" rows="3"></textarea>
         </div>
