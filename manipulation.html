@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulation - R1.13 TP1</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect x=%278%27 y=%2716%27 width=%2784%27 height=%2768%27 rx=%2710%27 fill=%27%231c2333%27/%3E%3Cpath d=%27M24 38 L38 50 L24 62%27 stroke=%27%236ee7a8%27 stroke-width=%278%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M46 64 H74%27 stroke=%27%237cb7ff%27 stroke-width=%278%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="manipulation">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="nav-wrap">
+        <a class="brand" href="index.html"
+          ><img src="img/logo_iut.jpg" alt="" />
+          <span
+            >R1.13 - Hébergement
+            <small>TP1 · Système de fichiers et ligne de commande</small></span
+          ><img src="img/logo_mmi.jpg" alt="" />
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-nav="index">Accueil</a>
+          <a href="prerequis.html" data-nav="prerequis">Prérequis</a>
+          <a href="decouverte.html" data-nav="decouverte">Découverte</a>
+          <a href="manipulation.html" data-nav="manipulation">Manipulation</a>
+          <a href="livrable.html" data-nav="livrable">Livrable</a>
+          <a href="memo.html" data-nav="memo">Mémo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <p class="eyebrow">Partie 4 · 60 min</p>
+      <h1>Manipulation des fichiers et dossiers</h1>
+      <p class="lede">
+        Cette partie se concentre uniquement sur les commandes Linux/Unix.
+        Pour trouver les commandes, s'aider de la
+        <a href="memo.html">fiche récapitulative</a>. Les questions
+        <strong>Q5 à Q9</strong> sont à rédiger dans la page
+        <a href="livrable.html">Livrable</a>.
+      </p>
+
+      <div class="callout warn">
+        <p>
+          Entraîne-toi dans le terminal simulé (les actions se cochent toutes
+          seules), puis <strong>refais tout dans ton vrai terminal</strong> :
+          les captures d'écran du livrable doivent venir de MobaXterm ou du
+          Terminal macOS.
+        </p>
+      </div>
+
+      <div class="atelier">
+        <div>
+          <h2 style="margin-top: 0">4.1 Navigation et création</h2>
+          <p>Les étapes en gras sont les actions à exécuter.</p>
+          <ol class="actions">
+            <li data-mission="m-mkdir"><span><strong>Créer un dossier nommé <code>BUT_MMI</code>.</strong></span></li>
+            <li data-mission="m-cd"><span><strong>Entrer dans le dossier <code>BUT_MMI</code></strong> (avec la commande <code>cd</code>).</span></li>
+            <li data-mission="m-sous"><span><strong>Créer un sous-dossier nommé <code>TP_Hebergement</code>.</strong></span></li>
+            <li data-mission="m-cd2"><span><strong>Entrer dans le dossier <code>TP_Hebergement</code>.</strong></span></li>
+            <li data-mission="m-touch"><span><strong>Créer trois fichiers vides : <code>index.html</code>, <code>style.css</code> et <code>config.json</code>.</strong></span></li>
+            <li data-mission="m-ls"><span><strong>Afficher le contenu du dossier <code>TP_Hebergement</code></strong> pour vérifier la présence des trois fichiers.</span></li>
+          </ol>
+          <div class="q-sujet">
+            <p><span class="q-num">Q5</span>Quelle commande avez-vous utilisée pour créer les trois fichiers vides ? (Citer la commande et le mot-clé qui la précède.)</p>
+            <p class="q-lien"><a href="livrable.html#q5">Rédiger ma réponse &rarr;</a></p>
+          </div>
+
+          <h2>4.2 Renommage et déplacement</h2>
+          <ol class="actions">
+            <li data-mission="m-mv"><span><strong>Renommer le fichier <code>config.json</code> en <code>parametres.json</code>.</strong></span></li>
+          </ol>
+          <div class="q-sujet">
+            <p><span class="q-num">Q6</span>Quelle commande (et avec quels arguments) avez-vous utilisée pour renommer le fichier ?</p>
+            <p class="q-lien"><a href="livrable.html#q6">Rédiger ma réponse &rarr;</a></p>
+          </div>
+          <ol class="actions" start="2" style="counter-reset: action 1">
+            <li data-mission="m-parent"><span><strong>Remonter au dossier parent (<code>BUT_MMI</code>) en une seule commande.</strong></span></li>
+            <li data-mission="m-res"><span><strong>Créer un nouveau dossier nommé <code>Ressources</code>.</strong></span></li>
+            <li data-mission="m-deplace"><span><strong>Déplacer le fichier <code>style.css</code></strong> (qui est dans <code>TP_Hebergement</code>) <strong>vers le dossier <code>Ressources</code>.</strong></span></li>
+            <li data-mission="m-lsres"><span><strong>Exécuter la commande de liste (<code>ls</code>) dans le dossier <code>Ressources</code>.</strong></span></li>
+          </ol>
+          <div class="q-sujet">
+            <p><span class="q-num">Q7</span>Exécuter la commande de liste (<code>ls</code>) dans le dossier <code>Ressources</code>. Que voyez-vous ?</p>
+            <p class="q-lien"><a href="livrable.html#q7">Rédiger ma réponse &rarr;</a></p>
+          </div>
+
+          <h2>4.3 Gestion des permissions</h2>
+          <p>Commande <code>chmod</code>, spécifique Unix/Linux.</p>
+          <ol class="actions">
+            <li data-mission="m-p1"><span><strong>S'assurer d'être dans le dossier <code>BUT_MMI</code>.</strong></span></li>
+            <li data-mission="m-p2"><span><strong>Entrer dans le dossier <code>TP_Hebergement</code>.</strong></span></li>
+            <li data-mission="m-lsl"><span><strong>Afficher la liste détaillée des fichiers et de leurs permissions (<code>ls -l</code>).</strong></span></li>
+          </ol>
+          <div class="q-sujet">
+            <p><span class="q-num">Q8</span>Sur la ligne du fichier <code>index.html</code>, identifier les trois sections de permissions : Propriétaire, Groupe, et Autres. Quelle est la signification de la lettre <code>w</code> dans ces sections ?</p>
+            <p class="q-lien"><a href="livrable.html#q8">Rédiger ma réponse &rarr;</a></p>
+          </div>
+          <ol class="actions" start="4" style="counter-reset: action 3">
+            <li data-mission="m-chmod"><span><strong>Appliquer la permission lecture seule</strong> (lecture seule pour tout le monde) au fichier <code>index.html</code> : <code>chmod 444 index.html</code>.</span></li>
+            <li data-mission="m-lsl2"><span><strong>Afficher à nouveau les permissions détaillées (<code>ls -l</code>).</strong></span></li>
+          </ol>
+          <div class="q-sujet">
+            <p><span class="q-num">Q9</span><strong>Deux questions :</strong></p>
+            <ul>
+              <li>Comment la chaîne de permissions de <code>index.html</code> a-t-elle changé ?</li>
+              <li>Si on applique <code>chmod 700 autre_fichier.txt</code>, quelles sont les permissions accordées (Propriétaire / Groupe / Autres) ? Détailler : Lecture, Écriture, Exécution.</li>
+            </ul>
+            <p class="q-lien"><a href="livrable.html#q9">Rédiger ma réponse &rarr;</a></p>
+          </div>
+        </div>
+        <div class="atelier-terminal">
+          <div id="terminal-manip"></div>
+        </div>
+      </div>
+
+      <h2>Comprendre une ligne <code>ls -l</code></h2>
+      <p>Clique sur chaque morceau de la ligne pour savoir ce qu'il signifie.</p>
+      <div class="ls-decode" id="ls-decode"><button type="button" class="p-type" data-texte="Le type d'élément : « - » pour un fichier ordinaire, « d » pour un dossier (directory).">-</button><button type="button" class="p-u" data-texte="Les droits du Propriétaire (user) : r = lecture, w = écriture, - = droit absent. Ici il peut lire et modifier le fichier, pas l'exécuter.">rw-</button><button type="button" class="p-g" data-texte="Les droits du Groupe (group) : les utilisateurs du même groupe que le fichier. Ici : lecture seulement.">r--</button><button type="button" class="p-o" data-texte="Les droits des Autres (other) : tous les autres utilisateurs, dont le serveur web. Ici : lecture seulement.">r--</button> <button type="button" data-texte="Le nombre de liens vers ce fichier (on ne s'en sert pas dans ce TP).">1</button> <button type="button" data-texte="Le propriétaire du fichier (affiché par la commande whoami quand c'est toi).">etudiant</button> <button type="button" data-texte="Le groupe auquel appartient le fichier.">etudiant</button> <button type="button" data-texte="La taille en octets : 0, puisque le fichier a été créé vide avec touch.">0</button> <button type="button" data-texte="La date et l'heure de dernière modification (touch la met à jour).">Oct  4 15:42</button> <button type="button" data-texte="Le nom du fichier.">index.html</button></div>
+      <p class="ls-explication" id="ls-explication" aria-live="polite"></p>
+
+      <h2>Calculateur de permissions</h2>
+      <p>
+        Coche les droits ou tape un nombre de trois chiffres : chaque chiffre
+        est la somme de <strong>4</strong> (r, lecture),
+        <strong>2</strong> (w, écriture) et <strong>1</strong> (x,
+        exécution).
+      </p>
+      <div class="chmod-calc" id="chmod-calc">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th></th><th>Lecture (r = 4)</th><th>Écriture (w = 2)</th><th>Exécution (x = 1)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Propriétaire</td>
+                <td><input type="checkbox" data-qui="0" data-val="4" checked aria-label="Propriétaire : lecture" /></td>
+                <td><input type="checkbox" data-qui="0" data-val="2" checked aria-label="Propriétaire : écriture" /></td>
+                <td><input type="checkbox" data-qui="0" data-val="1" aria-label="Propriétaire : exécution" /></td></tr>
+              <tr><td>Groupe</td>
+                <td><input type="checkbox" data-qui="1" data-val="4" checked aria-label="Groupe : lecture" /></td>
+                <td><input type="checkbox" data-qui="1" data-val="2" aria-label="Groupe : écriture" /></td>
+                <td><input type="checkbox" data-qui="1" data-val="1" aria-label="Groupe : exécution" /></td></tr>
+              <tr><td>Autres</td>
+                <td><input type="checkbox" data-qui="2" data-val="4" checked aria-label="Autres : lecture" /></td>
+                <td><input type="checkbox" data-qui="2" data-val="2" aria-label="Autres : écriture" /></td>
+                <td><input type="checkbox" data-qui="2" data-val="1" aria-label="Autres : exécution" /></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="chmod-resultat">
+          <label>Octal<input name="octal" inputmode="numeric" maxlength="3" /></label>
+          <label>Chaîne ls -l<output name="chaine"></output></label>
+          <label>Commande<output name="cmd" class="cmd"></output></label>
+        </div>
+        <p style="text-align: center; margin: 0.8rem 0 0">
+          Essayer :
+          <button type="button" class="popup-btn" data-preset="644">644</button>
+          <button type="button" class="popup-btn" data-preset="755">755</button>
+          <button type="button" class="popup-btn" data-preset="600">600</button>
+          <button type="button" class="popup-btn" data-preset="777">777</button>
+        </p>
+      </div>
+
+      <div class="callout" style="margin-top: 1.4rem">
+        <h4>À retenir</h4>
+        <p>
+          Sur un serveur web, si le serveur n'a pas la permission de lecture
+          (<code>r</code>) sur un fichier, il ne pourra pas l'envoyer au
+          navigateur. Si le serveur n'a pas la permission d'écriture
+          (<code>w</code>) dans un répertoire (ex : pour les uploads),
+          l'opération échouera.
+        </p>
+      </div>
+
+      <p style="text-align: center; margin-top: 2rem">
+        <a class="btn" href="livrable.html">Préparer mon livrable &rarr;</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      R1.13 Hébergement - BUT MMI 1 · IUT de Béziers · TP1 Exploration du
+      système d'exploitation et de la ligne de commande
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/manipulation.js"></script>
+  </body>
+</html>

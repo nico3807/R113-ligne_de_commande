@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R1.13 - TP1 Système de fichiers et ligne de commande</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect x=%278%27 y=%2716%27 width=%2784%27 height=%2768%27 rx=%2710%27 fill=%27%231c2333%27/%3E%3Cpath d=%27M24 38 L38 50 L24 62%27 stroke=%27%236ee7a8%27 stroke-width=%278%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M46 64 H74%27 stroke=%27%237cb7ff%27 stroke-width=%278%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="index">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="nav-wrap">
+        <a class="brand" href="index.html"
+          ><img src="img/logo_iut.jpg" alt="" />
+          <span
+            >R1.13 - Hébergement
+            <small>TP1 · Système de fichiers et ligne de commande</small></span
+          ><img src="img/logo_mmi.jpg" alt="" />
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-nav="index">Accueil</a>
+          <a href="prerequis.html" data-nav="prerequis">Prérequis</a>
+          <a href="decouverte.html" data-nav="decouverte">Découverte</a>
+          <a href="manipulation.html" data-nav="manipulation">Manipulation</a>
+          <a href="livrable.html" data-nav="livrable">Livrable</a>
+          <a href="memo.html" data-nav="memo">Mémo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <p class="eyebrow">TP1 - BUT MMI 1 · R1.13 Hébergement</p>
+      <h1>Exploration du système d'exploitation et de la ligne de commande</h1>
+      <p class="lede">
+        Comprendre l'organisation du système de fichiers, des utilisateurs et
+        des permissions, et s'initier à la navigation en ligne de commande
+        Linux/Unix : le quotidien de l'administration d'un serveur web.
+      </p>
+
+      <div class="grid cols-3" style="margin-top: 1.8rem">
+        <div class="card">
+          <p class="eyebrow">Objectif</p>
+          <p>
+            Comprendre l'organisation du système de fichiers, des utilisateurs,
+            des permissions et s'initier à la navigation en ligne de commande
+            Linux/Unix.
+          </p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Compétence ciblée</p>
+          <p>
+            <strong>AC14.01</strong> - Exploiter de manière autonome un
+            environnement de développement efficace et productif.
+          </p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Matériel / logiciel</p>
+          <p>
+            macOS (Terminal) ou Windows (MobaXterm en session locale Bash).
+          </p>
+        </div>
+      </div>
+
+      <h2>Déroulé du TP</h2>
+      <ul class="timeline">
+        <li>
+          <span
+            ><strong>2. Prérequis</strong> (10 min) - Installer et lancer son
+            terminal : MobaXterm sous Windows, Terminal sous macOS.</span
+          >
+        </li>
+        <li>
+          <span
+            ><strong>3. Découverte de l'environnement</strong> (20 min) - Le
+            système de fichiers Unix/Linux, les interfaces, le lancement du
+            terminal. Questions Q1 à Q4.</span
+          >
+        </li>
+        <li>
+          <span
+            ><strong>4. Manipulation des fichiers et dossiers</strong> (60 min)
+            - Navigation et création, renommage et déplacement, gestion des
+            permissions. Questions Q5 à Q9.</span
+          >
+        </li>
+        <li>
+          <span
+            ><strong>5. Livrable</strong> - Deux captures d'écran et les
+            réponses aux 9 questions, à déposer sur Moodle.</span
+          >
+        </li>
+      </ul>
+
+      <h2>Comment utiliser ce site</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>🖥️ Un terminal d'entraînement intégré</h3>
+          <p>
+            Les pages Découverte et Manipulation contiennent un terminal Bash
+            simulé. Chaque action du sujet se coche toute seule quand tu la
+            réussis. Rien n'est modifié sur ton ordinateur : tu peux te
+            tromper sans risque.
+          </p>
+        </div>
+        <div class="card">
+          <h3>✅ Le livrable se fait dans ton vrai terminal</h3>
+          <p>
+            Une fois l'entraînement réussi, refais les manipulations dans
+            MobaXterm ou le Terminal macOS pour tes captures d'écran. Rédige
+            tes réponses dans la page Livrable : elles restent enregistrées
+            dans ton navigateur.
+          </p>
+        </div>
+      </div>
+
+      <details class="callout" style="margin-top: 2rem">
+        <summary><strong>Descriptif de la ressource R1.13 Hébergement</strong></summary>
+        <p>
+          Objectif : comprendre le fonctionnement général d'internet et
+          initier à l'administration de serveurs en gérant son poste de
+          travail :
+        </p>
+        <ul>
+          <li>Présentation de l'architecture de différents matériels (ordinateurs, tablettes, téléphones...) et découverte de ces éléments au travers des outils et interfaces des différents OS ;</li>
+          <li>Découverte des systèmes d'exploitation (processus, système de fichiers, comptes et permissions, lignes de commande) ;</li>
+          <li>Présentation d'Internet (historique, acteurs, normalisation) et de son fonctionnement (adressage, routage) ;</li>
+          <li>Les applications sur Internet : modèle client/serveur, notion de ports (DNS, HTTP), expérimentation et visualisation des échanges via les outils de développement des navigateurs ;</li>
+          <li>Installation et configuration d'un serveur Web local (gestion du service, fichiers de traces, permissions, alias...) ;</li>
+          <li>Utilisation de serveurs distants : client FTP, client SSH ;</li>
+          <li>Déploiement d'un site Web sur un serveur Web préconfiguré.</li>
+        </ul>
+        <p>CM : Benoît DARTIES · TP : Nicolas MAURIN</p>
+      </details>
+
+      <p style="text-align: center; margin-top: 2rem">
+        <a class="btn" href="prerequis.html">Commencer par les prérequis &rarr;</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      R1.13 Hébergement - BUT MMI 1 · IUT de Béziers · TP1 Exploration du
+      système d'exploitation et de la ligne de commande
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

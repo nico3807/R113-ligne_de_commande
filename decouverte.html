@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Découverte - R1.13 TP1</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect x=%278%27 y=%2716%27 width=%2784%27 height=%2768%27 rx=%2710%27 fill=%27%231c2333%27/%3E%3Cpath d=%27M24 38 L38 50 L24 62%27 stroke=%27%236ee7a8%27 stroke-width=%278%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M46 64 H74%27 stroke=%27%237cb7ff%27 stroke-width=%278%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="decouverte">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="nav-wrap">
+        <a class="brand" href="index.html"
+          ><img src="img/logo_iut.jpg" alt="" />
+          <span
+            >R1.13 - Hébergement
+            <small>TP1 · Système de fichiers et ligne de commande</small></span
+          ><img src="img/logo_mmi.jpg" alt="" />
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-nav="index">Accueil</a>
+          <a href="prerequis.html" data-nav="prerequis">Prérequis</a>
+          <a href="decouverte.html" data-nav="decouverte">Découverte</a>
+          <a href="manipulation.html" data-nav="manipulation">Manipulation</a>
+          <a href="livrable.html" data-nav="livrable">Livrable</a>
+          <a href="memo.html" data-nav="memo">Mémo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <p class="eyebrow">Partie 3 · 20 min</p>
+      <h1>Découverte de l'environnement</h1>
+      <p class="lede">
+        Cette partie vise à découvrir ou consolider les concepts fondamentaux
+        avant de passer à la pratique. Les questions <strong>Q1 à Q4</strong>
+        sont à rédiger dans la page <a href="livrable.html">Livrable</a>.
+      </p>
+
+      <h2>3.1 Le système de fichiers (Unix/Linux)</h2>
+      <div class="atelier">
+        <div>
+          <p>
+            Fais d'abord chaque action dans le terminal d'entraînement : elle
+            se coche toute seule. Refais-la ensuite dans ton vrai terminal pour
+            répondre aux questions.
+          </p>
+          <ol class="actions">
+            <li><span>Ouvrir un Terminal (macOS) ou démarrer une session locale Bash
+              (MobaXterm).</span></li>
+            <li data-mission="d-pwd"><span>Exécuter la commande <code>pwd</code>.</span></li>
+            <li data-mission="d-racine"><span>Aller voir tout en haut de l'arborescence : <code>cd /</code>
+              puis <code>ls</code>.</span></li>
+          </ol>
+
+          <div class="q-sujet">
+            <p><span class="q-num">Q1</span><strong>Ton répertoire personnel et la racine</strong></p>
+            <p>
+              Quel est le chemin d'accès complet de votre répertoire personnel
+              (ou dossier utilisateur) ?
+            </p>
+            <p>
+              Quel caractère représente la <strong>racine</strong> du système
+              de fichiers (le dossier le plus haut) en environnement
+              Linux/Unix ?
+            </p>
+            <p class="q-lien"><a href="livrable.html#q1">Rédiger ma réponse &rarr;</a></p>
+          </div>
+          <div class="callout">
+            <p>
+              <strong>Indice MobaXterm :</strong> votre répertoire personnel
+              est souvent affiché comme <code>/home/mobaxterm</code>. Le
+              symbole <code>~</code> dans l'invite est un raccourci qui le
+              désigne.
+            </p>
+          </div>
+        </div>
+        <div class="atelier-terminal">
+          <div id="terminal-decouverte"></div>
+        </div>
+      </div>
+
+      <div class="q-sujet">
+        <p><span class="q-num">Q2</span><strong>Chemin absolu ou relatif ?</strong></p>
+        <p>
+          En vous basant sur la structure de l'arborescence Linux/Unix (où tout
+          part de la racine <code>/</code>), expliquer brièvement pourquoi le
+          chemin <code>/home/etudiant/projet.txt</code> est un chemin
+          <strong>absolu</strong>, et le chemin <code>images/photo.jpg</code>
+          est un chemin <strong>relatif</strong>.
+        </p>
+        <p class="q-lien"><a href="livrable.html#q2">Rédiger ma réponse &rarr;</a></p>
+      </div>
+
+      <h3>Explore l'arborescence</h3>
+      <p>
+        Choisis où tu te trouves (mode « Je suis ici », en vert), puis clique
+        sur un élément pour voir ses deux chemins.
+      </p>
+      <div class="arbo-wrap">
+        <div class="arbo" id="arbo"></div>
+        <div class="arbo-sortie">
+          <div class="arbo-mode" role="group" aria-label="Mode de clic">
+            <button type="button" data-arbo-mode="cible" aria-pressed="true">🎯 Viser un élément</button>
+            <button type="button" data-arbo-mode="ici" aria-pressed="false">📍 Je suis ici</button>
+          </div>
+          <div><small>Je suis dans (<code>pwd</code>) :</small><div class="chemin" id="arbo-ici"></div></div>
+          <div><small>Chemin absolu de l'élément visé :</small><div class="chemin" id="arbo-abs"></div></div>
+          <div><small>Chemin relatif depuis ma position :</small><div class="chemin" id="arbo-rel"></div></div>
+          <p id="arbo-explication" aria-live="polite" style="margin: 0"></p>
+        </div>
+      </div>
+
+      <h3>Mini-jeu : absolu ou relatif ?</h3>
+      <div class="tri" id="tri">
+        <div class="tri-item" data-type="abs" data-explication="Il commence par / : il part de la racine.">
+          <code>/etc/hosts</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="rel" data-explication="Pas de / au début : il part du dossier courant.">
+          <code>Documents/cv.pdf</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="rel" data-explication=".. désigne le dossier parent du dossier courant : le résultat dépend donc de l'endroit où l'on est.">
+          <code>../images/logo.png</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="abs" data-explication="C'est la racine elle-même, le chemin absolu le plus court.">
+          <code>/</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="rel" data-explication=". désigne le dossier courant : ./index.html est le fichier index.html d'ici.">
+          <code>./index.html</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="abs" data-explication="Il part de la racine / jusqu'au dossier html, quel que soit l'endroit où l'on se trouve.">
+          <code>/var/www/html</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+        <div class="tri-item" data-type="abs" data-explication="Piège : ~ est un raccourci que le terminal remplace par le chemin absolu de ton dossier personnel (/home/...).">
+          <code>~/Documents</code>
+          <button type="button" data-choix="abs">Absolu</button><button type="button" data-choix="rel">Relatif</button>
+          <span class="verdict"></span>
+        </div>
+      </div>
+      <p class="score" id="tri-score" aria-live="polite"></p>
+
+      <h2>3.2 Comptes utilisateurs et interfaces</h2>
+      <div class="q-sujet">
+        <p><span class="q-num">Q3</span><strong>Interface graphique ou ligne de commande ?</strong></p>
+        <p>
+          Rédiger une phrase pour expliquer la principale différence entre
+          l'Explorateur de fichiers ou Finder (interface graphique) et le
+          Terminal (ligne de commande) en termes de vitesse d'exécution des
+          tâches complexes (ex : renommer 100 fichiers).
+        </p>
+        <p class="q-lien"><a href="livrable.html#q3">Rédiger ma réponse &rarr;</a></p>
+      </div>
+
+      <div class="card course">
+        <p style="margin: 0">
+          <strong>La course :</strong> renommer 100 photos
+          <code>IMG_0001.jpg</code>… en <code>vacances_IMG_0001.jpg</code>…
+        </p>
+        <div class="couloir explorateur">
+          <strong>🖱️ Explorateur / Finder</strong>
+          <div class="piste"><span></span></div>
+          <span class="chrono">0 / 100</span>
+        </div>
+        <div class="couloir terminal-c">
+          <strong>⌨️ Terminal</strong>
+          <div class="piste"><span></span></div>
+          <span class="chrono">0 / 100</span>
+        </div>
+        <p style="margin: 0">
+          <button type="button" class="btn" id="course-depart">▶ Lancer la course</button>
+        </p>
+        <div id="course-fin" hidden>
+          <p style="margin: 0 0 0.4rem">
+            Côté souris : clic droit, Renommer, taper le nom, Entrée… cent
+            fois. Côté terminal, une seule ligne suffit :
+          </p>
+          <pre><code>for f in *.jpg; do mv "$f" "vacances_$f"; done</code></pre>
+          <p style="margin: 0">
+            Tu n'as pas besoin de comprendre cette ligne aujourd'hui. À toi de
+            formuler la différence dans ta réponse à Q3.
+          </p>
+        </div>
+      </div>
+
+      <h2>3.3 Lancement du terminal</h2>
+      <ol class="actions">
+        <li data-mission="d-retour"><span>S'assurer d'être dans votre répertoire personnel : <code>cd</code>
+          (sans argument) y ramène, à vérifier avec <code>pwd</code>.</span></li>
+        <li data-mission="d-lsa"><span>Exécuter la commande <code>ls -a</code>.</span></li>
+      </ol>
+      <p style="color: var(--text-muted); font-size: 0.92rem">
+        Ces deux actions se font dans le terminal d'entraînement de la partie
+        <a href="#contenu">3.1</a>, puis dans ton vrai terminal.
+      </p>
+      <div class="q-sujet">
+        <p><span class="q-num">Q4</span><strong>L'option -a</strong></p>
+        <p>
+          Que signifie l'option <code>-a</code> ? (Regarder le type de fichiers
+          affichés en plus, en comparant avec un simple <code>ls</code>.)
+        </p>
+        <p class="q-lien"><a href="livrable.html#q4">Rédiger ma réponse &rarr;</a></p>
+      </div>
+
+      <p style="text-align: center; margin-top: 2rem">
+        <a class="btn" href="manipulation.html">Passer à la manipulation &rarr;</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      R1.13 Hébergement - BUT MMI 1 · IUT de Béziers · TP1 Exploration du
+      système d'exploitation et de la ligne de commande
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/decouverte.js"></script>
+  </body>
+</html>

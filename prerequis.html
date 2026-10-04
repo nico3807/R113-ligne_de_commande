@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prérequis - R1.13 TP1</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect x=%278%27 y=%2716%27 width=%2784%27 height=%2768%27 rx=%2710%27 fill=%27%231c2333%27/%3E%3Cpath d=%27M24 38 L38 50 L24 62%27 stroke=%27%236ee7a8%27 stroke-width=%278%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M46 64 H74%27 stroke=%27%237cb7ff%27 stroke-width=%278%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="prerequis">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="nav-wrap">
+        <a class="brand" href="index.html"
+          ><img src="img/logo_iut.jpg" alt="" />
+          <span
+            >R1.13 - Hébergement
+            <small>TP1 · Système de fichiers et ligne de commande</small></span
+          ><img src="img/logo_mmi.jpg" alt="" />
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-nav="index">Accueil</a>
+          <a href="prerequis.html" data-nav="prerequis">Prérequis</a>
+          <a href="decouverte.html" data-nav="decouverte">Découverte</a>
+          <a href="manipulation.html" data-nav="manipulation">Manipulation</a>
+          <a href="livrable.html" data-nav="livrable">Livrable</a>
+          <a href="memo.html" data-nav="memo">Mémo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <p class="eyebrow">Partie 2 · 10 min</p>
+      <h1>Prérequis : ouvrir un terminal</h1>
+      <p class="lede">
+        Pour ce TP, nous allons utiliser les commandes standard de
+        l'environnement Linux/Unix afin de mieux comprendre l'administration
+        de serveurs.
+      </p>
+
+      <h2>Sur quel système travailles-tu ?</h2>
+      <div class="os-choix">
+        <button type="button" class="os-btn" data-os-btn="windows">
+          <img src="img/logo_windows.png" alt="" />
+          <span><strong>Windows</strong><small>MobaXterm, session locale Bash</small></span>
+        </button>
+        <button type="button" class="os-btn" data-os-btn="macos">
+          <img src="img/logo_macos.png" alt="" />
+          <span><strong>macOS</strong><small>application Terminal</small></span>
+        </button>
+      </div>
+      <p class="hint" style="color: var(--text-muted); font-size: 0.9rem">
+        Ton choix est mémorisé : le terminal d'entraînement des pages suivantes
+        imitera celui de ton système.
+      </p>
+
+      <!-- ===================== Windows ===================== -->
+      <section data-os-bloc="windows">
+        <h2>Utilisateurs sous Windows : MobaXterm</h2>
+        <p>
+          L'outil recommandé sous Windows est <strong>MobaXterm</strong>, qui
+          installe un terminal complet intégrant les commandes Linux/Unix
+          (Bash). MobaXterm regroupe aussi un client SSH et un serveur X, qui
+          serviront plus tard dans la ressource.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Consigne :</strong> suivre la fiche d'installation
+            ci-dessous (également disponible dans Moodle) et lancer MobaXterm.
+          </p>
+        </div>
+
+        <div class="scenario-toolbar">
+          <strong>Installation</strong>
+          <div class="progress"><span data-progress></span></div>
+          <span class="progress-text" data-progress-text></span>
+        </div>
+
+        <section class="scenario" id="etape-1" data-etape>
+          <div class="scenario-head" role="button" tabindex="0" aria-expanded="false">
+            <input type="checkbox" class="scenario-check" aria-label="Étape 1 terminée" />
+            <span class="scenario-num">1</span>
+            <h3>Téléchargement du logiciel</h3>
+            <span class="scenario-caret" aria-hidden="true">▶</span>
+          </div>
+          <div class="scenario-body">
+            <ol>
+              <li>
+                <strong>Visiter le site officiel :</strong> dans le navigateur,
+                aller sur le site officiel de MobaXterm.
+                <a class="etape-lien" href="https://mobaxterm.mobatek.net/download.html" target="_blank" rel="noopener">mobaxterm.mobatek.net</a>
+              </li>
+              <li><strong>Choisir l'édition :</strong> cliquer sur le bouton de téléchargement (<em>Download</em>).</li>
+              <li>
+                <strong>Sélectionner la version gratuite :</strong> choisir la
+                <em>Home Edition</em> (gratuite). Cette version est largement
+                suffisante pour tous les TP du BUT MMI.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="scenario" id="etape-2" data-etape>
+          <div class="scenario-head" role="button" tabindex="0" aria-expanded="false">
+            <input type="checkbox" class="scenario-check" aria-label="Étape 2 terminée" />
+            <span class="scenario-num">2</span>
+            <h3>Préparation et lancement</h3>
+            <span class="scenario-caret" aria-hidden="true">▶</span>
+          </div>
+          <div class="scenario-body">
+            <p>Le fichier téléchargé est une archive compressée au format ZIP.</p>
+            <ol>
+              <li>
+                <strong>Décompresser l'archive :</strong>
+                <ul>
+                  <li>localiser le fichier ZIP téléchargé (par exemple : <code>MobaXterm_installer_xx.x.zip</code>) ;</li>
+                  <li>faire un clic droit sur le fichier et choisir « Extraire tout... » (ou utiliser un logiciel comme 7-Zip) ;</li>
+                  <li>extraire le contenu dans un dossier facile à trouver, par exemple <code>C:\MMI\MobaXterm\</code>.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Installer :</strong> se rendre dans ce dossier et
+                double-cliquer sur <code>MobaXterm_installer_xx.x.msi</code>.
+              </li>
+              <li><strong>Lancer MobaXterm.</strong></li>
+            </ol>
+            <div class="callout warn">
+              <p>
+                <strong>Note :</strong> lors du premier lancement, le logiciel
+                peut demander d'autoriser certaines connexions via le pare-feu
+                Windows. Confirmer et autoriser l'accès si cela est demandé.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="scenario" id="etape-3" data-etape>
+          <div class="scenario-head" role="button" tabindex="0" aria-expanded="false">
+            <input type="checkbox" class="scenario-check" aria-label="Étape 3 terminée" />
+            <span class="scenario-num">3</span>
+            <h3>Démarrer le terminal local (Bash)</h3>
+            <span class="scenario-caret" aria-hidden="true">▶</span>
+          </div>
+          <div class="scenario-body">
+            <ol>
+              <li><strong>Écran de démarrage :</strong> l'interface principale de MobaXterm s'ouvre.</li>
+              <li>
+                <strong>Cliquer sur le terminal local :</strong> dans la fenêtre
+                principale, cliquer sur le gros bouton
+                <em>Start local terminal</em> (ou « Démarrer le terminal
+                local »).
+              </li>
+            </ol>
+            <figure class="etape-figure">
+              <img src="img/mobaxterm_accueil.png" alt="Fenêtre d'accueil de MobaXterm : barre d'outils, sessions Bash et WSL-Ubuntu à gauche, bouton Start local terminal au centre." />
+            </figure>
+            <ol start="3">
+              <li>
+                <strong>Vérification :</strong> une nouvelle fenêtre de
+                terminal s'ouvre, affichant l'invite de commande de type Bash
+                (similaire à Linux ou macOS). L'invite ressemblera à ceci :
+              </li>
+            </ol>
+            <figure class="etape-figure" style="max-width: 760px">
+              <img src="img/mobaxterm_terminal.png" alt="Terminal MobaXterm : message d'accueil, puis invite avec la date, l'heure et le dossier /home/mobaxterm." />
+            </figure>
+            <div class="callout ok">
+              <p>
+                Vous êtes prêt pour utiliser MobaXterm ! L'invite
+                <code>$</code> indique que vous pouvez maintenant taper les
+                commandes Linux/Unix abordées dans la fiche récapitulative
+                (<code>pwd</code>, <code>ls</code>, <code>mkdir</code>,
+                <code>cd</code>, <code>chmod</code>...).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="scenario" id="etape-4" data-etape>
+          <div class="scenario-head" role="button" tabindex="0" aria-expanded="false">
+            <input type="checkbox" class="scenario-check" aria-label="Étape 4 terminée" />
+            <span class="scenario-num">4</span>
+            <h3>Paramètre recommandé (optionnel) : le jeu de caractères</h3>
+            <span class="scenario-caret" aria-hidden="true">▶</span>
+          </div>
+          <div class="scenario-body">
+            <p>
+              Si vous prévoyez d'utiliser des accents ou des caractères
+              spéciaux, il est bon de vérifier un paramètre :
+            </p>
+            <ol>
+              <li>cliquer sur <strong>Settings</strong> (en haut de la fenêtre) ;</li>
+              <li>aller dans l'onglet <strong>Terminal</strong> ;</li>
+              <li>
+                sous <strong>Charset</strong>, s'assurer que l'option
+                <strong>UTF-8 (Unicode)</strong> est sélectionnée. Cela garantit
+                que les caractères spéciaux (comme les accents) sont
+                correctement affichés.
+              </li>
+            </ol>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===================== macOS ===================== -->
+      <section data-os-bloc="macos" hidden>
+        <h2>Utilisateurs sous macOS : le Terminal</h2>
+        <p>
+          macOS est basé sur un système de type Unix : ses commandes de base
+          sont les mêmes que celles utilisées sur la majorité des serveurs web
+          (Linux). Votre environnement est donc prêt à l'emploi.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Consigne :</strong> lancer l'application
+            <strong>Terminal</strong>. Vous la trouverez dans le dossier
+            <em>Applications &gt; Utilitaires</em>, ou en la cherchant via
+            Spotlight (<kbd>⌘</kbd> + <kbd>Espace</kbd>, puis taper
+            « Terminal »). Vous vous retrouverez directement dans l'interface
+            de ligne de commande où vous pourrez exécuter toutes les commandes
+            du TP.
+          </p>
+        </div>
+        <div class="callout warn">
+          <p>
+            Sur les Mac récents, l'invite se termine par <code>%</code> au lieu
+            de <code>$</code> (le shell s'appelle <em>zsh</em>) : les commandes
+            du TP fonctionnent exactement de la même façon.
+          </p>
+        </div>
+      </section>
+
+      <p style="text-align: center; margin-top: 2rem">
+        <a class="btn" href="decouverte.html">Terminal ouvert ? Passer à la découverte &rarr;</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      R1.13 Hébergement - BUT MMI 1 · IUT de Béziers · TP1 Exploration du
+      système d'exploitation et de la ligne de commande
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

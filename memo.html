@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mémo - R1.13 TP1</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect x=%278%27 y=%2716%27 width=%2784%27 height=%2768%27 rx=%2710%27 fill=%27%231c2333%27/%3E%3Cpath d=%27M24 38 L38 50 L24 62%27 stroke=%27%236ee7a8%27 stroke-width=%278%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M46 64 H74%27 stroke=%27%237cb7ff%27 stroke-width=%278%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="memo">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="nav-wrap">
+        <a class="brand" href="index.html"
+          ><img src="img/logo_iut.jpg" alt="" />
+          <span
+            >R1.13 - Hébergement
+            <small>TP1 · Système de fichiers et ligne de commande</small></span
+          ><img src="img/logo_mmi.jpg" alt="" />
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-nav="index">Accueil</a>
+          <a href="prerequis.html" data-nav="prerequis">Prérequis</a>
+          <a href="decouverte.html" data-nav="decouverte">Découverte</a>
+          <a href="manipulation.html" data-nav="manipulation">Manipulation</a>
+          <a href="livrable.html" data-nav="livrable">Livrable</a>
+          <a href="memo.html" data-nav="memo">Mémo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <p class="eyebrow">Fiche récapitulative</p>
+      <h1>Aide-mémoire : commandes de base du terminal</h1>
+      <p class="lede">
+        Ce TP utilise principalement des commandes standard des systèmes
+        d'exploitation de type Unix (Linux, macOS), qui sont les plus
+        courantes dans le développement web. Cette fiche récapitule les
+        fonctions de base du terminal (Bash/Shell), essentielles pour
+        comprendre l'administration de serveurs.
+      </p>
+
+      <p>
+        <input class="filtre" id="filtre" type="search" placeholder="🔎 Filtrer : dossier, permission, supprimer..." aria-label="Filtrer les commandes" />
+      </p>
+
+      <h2>Navigation et localisation</h2>
+      <p>Ces commandes permettent de savoir où l'on est et de se déplacer dans le système de fichiers.</p>
+      <div class="table-scroll">
+        <table data-filtrable>
+          <thead><tr><th>Commande</th><th>Signification</th><th>Rôle / utilisation</th><th>Arguments / options clés</th></tr></thead>
+          <tbody>
+            <tr><td><code data-copie>pwd</code></td><td>Print Working Directory</td><td>Affiche le chemin absolu du répertoire courant. Indispensable pour savoir où l'on travaille.</td><td>Aucun</td></tr>
+            <tr><td><code data-copie>cd</code></td><td>Change Directory</td><td>Permet de changer de répertoire (entrer, sortir).</td><td><code>..</code> remonter au parent<br /><code>/</code> aller à la racine<br /><code>~</code> aller au répertoire personnel</td></tr>
+            <tr><td><code data-copie>ls</code></td><td>List</td><td>Liste le contenu (fichiers et dossiers) du répertoire courant.</td><td><code>-l</code> format long : permissions, propriétaire, taille, etc.<br /><code>-a</code> tous les fichiers, y compris ceux cachés, commençant par un point <code>.</code></td></tr>
+            <tr><td><code data-copie>whoami</code></td><td>Who am I</td><td>Affiche le nom de l'utilisateur actuellement connecté à la session shell.</td><td>Aucun</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Gestion des fichiers et dossiers</h2>
+      <p>Ces commandes sont les outils de base pour créer, déplacer ou supprimer des éléments.</p>
+      <div class="table-scroll">
+        <table data-filtrable>
+          <thead><tr><th>Commande</th><th>Signification</th><th>Rôle / utilisation</th><th>Exemples</th></tr></thead>
+          <tbody>
+            <tr><td><code>mkdir</code></td><td>Make Directory</td><td>Crée un nouveau répertoire (dossier).</td><td><code data-copie>mkdir monDossier</code></td></tr>
+            <tr><td><code>touch</code></td><td>Touch (littéralement)</td><td>Crée un fichier vide s'il n'existe pas, ou met à jour sa date de dernière modification s'il existe.</td><td><code data-copie>touch monFichier.txt</code></td></tr>
+            <tr><td><code>mv</code></td><td>Move</td><td>1. Déplace un élément d'un endroit à un autre.<br />2. Renomme un élément (le déplace « vers » un nouveau nom).</td><td><code data-copie>mv data.json config.json</code> (renommage)<br /><code data-copie>mv monStyle.css css/</code> (déplacement)</td></tr>
+            <tr><td><code>rm</code></td><td>Remove</td><td>Supprime un fichier.</td><td><code data-copie>rm fichier_a_supprimer.txt</code></td></tr>
+            <tr><td><code>rm -r</code></td><td>Remove Recursively</td><td>Supprime un répertoire et tout son contenu (à utiliser avec <strong>grande prudence</strong>).</td><td><code data-copie>rm -r ancien_dossier</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Gestion des permissions (la plus critique)</h2>
+      <p>La commande <code>chmod</code> est fondamentale pour l'administration de serveurs et l'hébergement.</p>
+      <div class="table-scroll">
+        <table data-filtrable>
+          <thead><tr><th>Commande</th><th>Signification</th><th>Rôle / utilisation</th><th>Explication des permissions</th></tr></thead>
+          <tbody>
+            <tr><td><code>chmod</code></td><td>Change Mode</td><td>Modifie les droits d'accès (permissions) d'un fichier ou d'un répertoire.</td><td>Les droits sont gérés pour 3 entités : <strong>U</strong>ser (Propriétaire), <strong>G</strong>roup (Groupe), <strong>O</strong>ther (Autres).</td></tr>
+            <tr><td>Valeurs octales</td><td>(numérique)</td><td>La permission est définie par la somme des droits R/W/X.<br />Exemple : <code data-copie>chmod 444 index.html</code> signifie : 4 (lecture) pour le Propriétaire, 4 pour le Groupe, 4 pour les Autres. Résultat : <code>r--r--r--</code>.</td><td><code>4</code> : r (lecture - Read)<br /><code>2</code> : w (écriture - Write)<br /><code>1</code> : x (exécution - Execute)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <h4>À retenir</h4>
+        <p>
+          Sur un serveur web, si le serveur n'a pas la permission de lecture
+          (<code>r</code>) sur un fichier, il ne pourra pas l'envoyer au
+          navigateur. Si le serveur n'a pas la permission d'écriture
+          (<code>w</code>) dans un répertoire (ex : pour les uploads),
+          l'opération échouera.
+        </p>
+      </div>
+
+      <h2>Les réflexes Windows à oublier</h2>
+      <div class="table-scroll">
+        <table data-filtrable>
+          <thead><tr><th>Invite Windows (CMD)</th><th>Équivalent Linux/Unix</th></tr></thead>
+          <tbody>
+            <tr><td><code>dir</code></td><td><code>ls</code></td></tr>
+            <tr><td><code>cls</code></td><td><code>clear</code></td></tr>
+            <tr><td><code>md</code></td><td><code>mkdir</code></td></tr>
+            <tr><td><code>ren</code> / <code>move</code></td><td><code>mv</code></td></tr>
+            <tr><td><code>del</code></td><td><code>rm</code></td></tr>
+            <tr><td><code>cd..</code> (sans espace)</td><td><code>cd ..</code> (avec un espace)</td></tr>
+            <tr><td><code>C:\Users\nom</code></td><td><code>/home/nom</code> : des <code>/</code>, pas de lettre de lecteur</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Quiz : quelle commande ?</h2>
+      <div class="question" id="quiz-cmd">
+        <p class="q-titre"><span class="q-compte"></span></p>
+        <p class="q-enonce"></p>
+        <form>
+          <input type="text" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Commande" placeholder="Tape la commande" style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" />
+          <button class="btn" type="submit">Vérifier</button>
+        </form>
+        <p class="feedback" aria-live="polite"></p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      R1.13 Hébergement - BUT MMI 1 · IUT de Béziers · TP1 Exploration du
+      système d'exploitation et de la ligne de commande
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/memo.js"></script>
+  </body>
+</html>
